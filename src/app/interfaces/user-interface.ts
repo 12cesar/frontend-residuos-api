@@ -5,6 +5,11 @@ export interface ResultUser{
     msg?: string;
     usuario: Usuario[];
 }
+export interface ResultUserIndi{
+    ok:      boolean;
+    msg?: string;
+    usuario: Usuario;
+}
 
 export interface Usuario {
     _id:      string;

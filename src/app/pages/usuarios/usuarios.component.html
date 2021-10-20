@@ -34,11 +34,15 @@
                                 <td *ngIf="usuarios.estado === false" class="text-center"><a><i
                                             class="fas fa-lock"></i></a></td>
                                 <td class="text-nowrap text-center">
-                                    <a data-toggle="tooltip" data-original-title="Edit" class="btnAction"
+                                    <a data-toggle="tooltip" data-original-title="Edit" class="btnAction" data-toggle="modal"
+                                    data-target="#exampleModal" data-whatever="@mdo"
                                         (click)="editarUsuario(usuarios._id)"> <i
                                             class="fa fa-pencil text-inverse m-r-10"></i> </a>
-                                    <a data-toggle="tooltip" data-original-title="Close" class="btnAction"
-                                        (click)="borrarUsuario(usuarios._id)"> <i class="fas fa-lock text-danger"></i>
+                                    <a data-toggle="tooltip" data-original-title="Close" class="btnAction" *ngIf="usuarios.estado"
+                                        (click)="borrarUsuario(usuarios._id, false)"> <i class="fas fa-lock text-danger"></i>
+                                    </a>
+                                    <a data-toggle="tooltip" data-original-title="Close" class="btnAction" *ngIf="!usuarios.estado"
+                                        (click)="borrarUsuario(usuarios._id, true)"> <i class="fas fa-lock-open text-danger"></i>
                                     </a>
                                 </td>
                             </tr>
@@ -55,7 +59,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">{{titulo}} usuarios</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="cancelar()">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -82,8 +86,8 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary" (click)="crearEditarUsuario()">{{titulo}} usuario</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="cancelar()">Close</button>
+                <button type="submit" class="btn btn-primary" (click)="crearEditarUsuario()" [disabled]="usuarioForm.invalid" >{{titulo}} usuario</button>
             </div>
         </div>
     </div>

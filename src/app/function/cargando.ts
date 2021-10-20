@@ -4,7 +4,7 @@ export const cargandoLoad=(title: string)=>{
     Swal.fire({
         title,
         html: '<p>porfavor espere</p>',
-        timer:3000,
+        timer:1000,
         input: 'radio',
         didOpen: () => {
           Swal.showLoading();

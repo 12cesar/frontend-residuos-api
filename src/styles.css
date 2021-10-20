@@ -5,3 +5,10 @@
     -webkit-animation-fill-mode:both;
     animation-fill-mode:both
 }
+@import '~ngx-toastr/toastr';
+
+@import '~ngx-toastr/toastr-bs4-alert';
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+@import '~ngx-toastr/toastr-bs4-alert';
