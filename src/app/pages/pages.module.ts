@@ -9,6 +9,12 @@ import { AppRoutingModule } from '../app-routing.module';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { MensajesComponent } from './mensajes/mensajes.component';
+import { MultasComponent } from './multas/multas.component';
+import { VehiculosComponent } from './vehiculos/vehiculos.component';
+import { AlertaComponent } from './alerta/alerta.component';
+import { AnuncioComponent } from './anuncio/anuncio.component';
+import { ClienteComponent } from './cliente/cliente.component';
 
 
 
@@ -18,7 +24,13 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     ProgressComponent,
     Grafica1Component,
     PagesComponent,
-    UsuariosComponent
+    UsuariosComponent,
+    MensajesComponent,
+    MultasComponent,
+    VehiculosComponent,
+    AlertaComponent,
+    AnuncioComponent,
+    ClienteComponent
   ],
   exports:[
     DashboardComponent,
