@@ -6,6 +6,7 @@ import { ResultRole, Role } from '../../interfaces/role-interface';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ToastSuccess } from '../../function/validarpost';
 import Swal from 'sweetalert2';
+import { loadData, closeAlert } from '../../function/cargando';
 
 
 @Component({
@@ -22,6 +23,7 @@ export class UsuariosComponent implements OnInit {
   id: string = '';
   usuarioForm: FormGroup;
   unblock:boolean =true;
+  cargar?:boolean =true;
   constructor(private usuarioService: UsuarioAdminService, private fb: FormBuilder) {
     this.usuarioForm = this.fb.group({
       nombre: ['', Validators.required],
@@ -37,16 +39,31 @@ export class UsuariosComponent implements OnInit {
   }
 
   mostrarUsuario() {
+    if (this.cargar) {
+      loadData('Cargando', 'Espere mientras carga la informacion')
+    }
     this.usuarioService.getUsuarios(this.unblock).subscribe(
       (data: ResultUser) => {
         this.listUsuario = data.usuario;
+        this.cargar = false;
       }
     )
+    
+    if (this.cargar) {
+      closeAlert();
+    }
   }
 
-  verUsuario(unbloeck:boolean) {
-    this.unblock = unbloeck
-    this.mostrarUsuario();
+  ShowSelected($event:any) {
+    console.log($event.target.value);
+    if ($event.target.value === '1') {
+      this.unblock = true;
+      this.mostrarUsuario();
+    }
+    if ($event.target.value === '2') {
+      this.unblock = false;
+      this.mostrarUsuario();
+    }
   }
   getRoles() {
     this.usuarioService.getRoles().subscribe(
@@ -59,6 +76,7 @@ export class UsuariosComponent implements OnInit {
   crearEditarUsuario() {
 
     if (this.id === '') {
+
       const data = new FormData();
 
       data.append('nombre', this.usuarioForm.get('nombre')?.value);
@@ -68,13 +86,14 @@ export class UsuariosComponent implements OnInit {
       this.usuarioService.postUsuario(data).subscribe(
         (data:ResultUser)=>{
           ToastSuccess('success',data.msg);
-          this.mostrarUsuario();
+          
           this.usuarioForm.setValue({
             nombre: '',
             usuario: '',
             password: '',
             rol: ''
           });
+          this.mostrarUsuario();
         },(error)=>{
           ToastSuccess('warning', error.error.errors[0].msg)
         }
@@ -91,6 +110,7 @@ export class UsuariosComponent implements OnInit {
       this.usuarioService.putUsuario(data, this.id).subscribe(
         (data:ResultUserIndi)=>{
           ToastSuccess('success',data.msg );
+          this.mostrarUsuario();
         },
         (error)=>{
           console.log(error);
@@ -105,7 +125,7 @@ export class UsuariosComponent implements OnInit {
       (data:ResultUserIndi)=>{
         console.log(data);
         this.usuarioForm.setValue({
-            nombre: data.usuario.nombre,
+            nombre: data.usuario.nombre.toLowerCase(),
             usuario: data.usuario.usuario,
             password: '',
             rol: data.usuario.rol
@@ -129,27 +149,24 @@ export class UsuariosComponent implements OnInit {
       cancelButtonColor: '#d33',
       confirmButtonText: unblock ? 'Si, desbloquear!' :'Si, bloquear!'
     }).then((result) => {
-      this.usuarioService.deleteUsuario(id, unblock).subscribe(
-        (data:ResultUser)=>{
-          ToastSuccess('success', data.msg);
-          this.mostrarUsuario();
-          if (result.isConfirmed) {
+      if (result.isConfirmed) {
+        this.usuarioService.deleteUsuario(id, unblock).subscribe(
+          (data: ResultUser)=>{
+            this.mostrarUsuario();
             Swal.fire(
               unblock ? 'Desbloqueado' : 'Bloqueado',
               data.msg,
               'success'
             )
+          },
+          (error)=>{
+            console.log(error);
+            
           }
-        }
-      )
-    }) /*
-    this.usuarioService.deleteUsuario(id, unblock).subscribe(
-      (data:ResultUser)=>{
-        ToastSuccess('success', data.msg);
-        this.mostrarUsuario();
+        )
         
       }
-    ) */
+    }) 
 
   }
   cancelar(){
@@ -161,5 +178,6 @@ export class UsuariosComponent implements OnInit {
       password: '',
       rol: ''
   });
+  //this.mostrarUsuario();
   }
 }

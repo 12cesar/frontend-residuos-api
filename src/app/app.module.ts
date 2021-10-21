@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 import { NopagefoundComponent } from './nopagefound/nopagefound.component';
 import { AuthModule } from './auth/auth.module';
 import { HttpClientModule } from '@angular/common/http';
-import { ToastrModule } from 'ngx-toastr';
 
 
 
