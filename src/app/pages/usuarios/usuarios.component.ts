@@ -58,10 +58,12 @@ export class UsuariosComponent implements OnInit {
     console.log($event.target.value);
     if ($event.target.value === '1') {
       this.unblock = true;
+      this.cargar =true;
       this.mostrarUsuario();
     }
     if ($event.target.value === '2') {
       this.unblock = false;
+      this.cargar =true;
       this.mostrarUsuario();
     }
   }
@@ -95,7 +97,7 @@ export class UsuariosComponent implements OnInit {
           });
           this.mostrarUsuario();
         },(error)=>{
-          ToastSuccess('warning', error.error.errors[0].msg)
+          ToastSuccess('warning', error.error.errors[0].msg.toLowerCase())
         }
       )
     }
