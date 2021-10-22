@@ -1,1 +1,26 @@
-<p>dashboard works!</p>
+<!-- ============================================================== -->
+                <!-- Stats box -->
+                <!-- ============================================================== -->
+                <app-cuadrodatos></app-cuadrodatos>
+                <!-- ============================================================== -->
+                <!-- Sales overview chart -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div style="display: block;">
+                                    <app-graficaline></app-graficaline>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+        <!--         <div style="display: block;">
+                    <canvas baseChart width="400" height="400"
+                                [datasets]="lineChartData"
+                                [labels]="lineChartLabels"
+                                [chartType]="'line'"
+                                ></canvas>
+                    </div> -->

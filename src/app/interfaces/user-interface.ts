@@ -4,6 +4,7 @@ export interface ResultUser{
     ok:      boolean;
     msg?: string;
     usuario: Usuario[];
+
 }
 export interface ResultUserIndi{
     ok:      boolean;

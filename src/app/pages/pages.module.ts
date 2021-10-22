@@ -15,6 +15,9 @@ import { VehiculosComponent } from './vehiculos/vehiculos.component';
 import { AlertaComponent } from './alerta/alerta.component';
 import { AnuncioComponent } from './anuncio/anuncio.component';
 import { ClienteComponent } from './cliente/cliente.component';
+import { ChartsModule } from 'ng2-charts';
+import { GraficalineComponent } from './graficaline/graficaline.component';
+import { CuadrodatosComponent } from './cuadrodatos/cuadrodatos.component';
 
 
 
@@ -30,7 +33,9 @@ import { ClienteComponent } from './cliente/cliente.component';
     VehiculosComponent,
     AlertaComponent,
     AnuncioComponent,
-    ClienteComponent
+    ClienteComponent,
+    GraficalineComponent,
+    CuadrodatosComponent
   ],
   exports:[
     DashboardComponent,
@@ -44,7 +49,8 @@ import { ClienteComponent } from './cliente/cliente.component';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    ChartsModule
   ]
 })
 export class PagesModule { }

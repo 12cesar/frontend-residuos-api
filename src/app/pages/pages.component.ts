@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PagesComponent implements OnInit {
 
+  public fecha: number = new Date().getFullYear();
   constructor() { }
 
   ngOnInit(): void {
