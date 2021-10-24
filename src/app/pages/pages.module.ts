@@ -18,6 +18,8 @@ import { ClienteComponent } from './cliente/cliente.component';
 import { ChartsModule } from 'ng2-charts';
 import { GraficalineComponent } from './graficaline/graficaline.component';
 import { CuadrodatosComponent } from './cuadrodatos/cuadrodatos.component';
+import { ConduccionComponent } from './conduccion/conduccion.component';
+import { UbicacionComponent } from './ubicacion/ubicacion.component';
 
 
 
@@ -35,7 +37,9 @@ import { CuadrodatosComponent } from './cuadrodatos/cuadrodatos.component';
     AnuncioComponent,
     ClienteComponent,
     GraficalineComponent,
-    CuadrodatosComponent
+    CuadrodatosComponent,
+    ConduccionComponent,
+    UbicacionComponent,
   ],
   exports:[
     DashboardComponent,

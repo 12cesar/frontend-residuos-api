@@ -11,6 +11,8 @@ import { AlertaComponent } from './alerta/alerta.component';
 import { AnuncioComponent } from './anuncio/anuncio.component';
 import { ClienteComponent } from './cliente/cliente.component';
 import { AuthGuard } from '../guard/auth.guard';
+import { ConduccionComponent } from './conduccion/conduccion.component';
+import { UbicacionComponent } from './ubicacion/ubicacion.component';
 
 
 const routes: Routes = [
@@ -46,6 +48,14 @@ const routes: Routes = [
           {
             path: 'clientes',
             component: ClienteComponent,
+          },
+          {
+            path: 'conduccion',
+            component: ConduccionComponent,
+          },
+          {
+            path: 'ubicacion',
+            component: UbicacionComponent,
           },
           {
             path: 'progress',
