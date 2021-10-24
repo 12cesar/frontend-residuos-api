@@ -25,8 +25,7 @@ export class GraficalineComponent implements OnInit {
   mostrarGrafica(){
     this.graficaService.getGraficaLineal().subscribe(
       (data:ResultGraficaLineal)=>{
-        this.lineChartData =data.data
-        console.log(data);
+        this.lineChartData =data.data;
         
       },
       (error)=>{

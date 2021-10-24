@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginServiceService } from '../../auth/login/login-service.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,9 +16,10 @@ export class DashboardComponent implements OnInit {
     { data: [180, 480, 770, 90, 1000, 270, 400], label: 'Series C', yAxisID: 'y-axis-1' }
   ];
   public lineChartLabels: Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-  constructor() { }
+  constructor(private authService: LoginServiceService) { }
 
   ngOnInit(): void {
+    this.authService.getSession();
   }
 
 }

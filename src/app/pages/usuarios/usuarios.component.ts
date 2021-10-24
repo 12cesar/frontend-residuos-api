@@ -45,17 +45,17 @@ export class UsuariosComponent implements OnInit {
     this.usuarioService.getUsuarios(this.unblock).subscribe(
       (data: ResultUser) => {
         this.listUsuario = data.usuario;
+        if (this.cargar) {
+          closeAlert();
+        }
         this.cargar = false;
       }
     )
     
-    if (this.cargar) {
-      closeAlert();
-    }
+    
   }
 
   ShowSelected($event:any) {
-    console.log($event.target.value);
     if ($event.target.value === '1') {
       this.unblock = true;
       this.cargar =true;

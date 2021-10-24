@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  urlHeroku: 'https://backen-api-residuos.herokuapp.com'
 };

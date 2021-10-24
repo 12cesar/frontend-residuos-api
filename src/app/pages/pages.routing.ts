@@ -10,6 +10,7 @@ import { VehiculosComponent } from './vehiculos/vehiculos.component';
 import { AlertaComponent } from './alerta/alerta.component';
 import { AnuncioComponent } from './anuncio/anuncio.component';
 import { ClienteComponent } from './cliente/cliente.component';
+import { AuthGuard } from '../guard/auth.guard';
 
 
 const routes: Routes = [
@@ -54,6 +55,9 @@ const routes: Routes = [
             path: 'grafica1',
             component: Grafica1Component,
           },
+        ],
+        canActivateChild:[
+          AuthGuard
         ]
       },
 ];
