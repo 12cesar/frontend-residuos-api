@@ -98,7 +98,7 @@ export class AnuncioComponent implements OnInit {
   borrarVehiculo(ids:any, unblock:boolean){
     Swal.fire({
       title: 'Estas seguro?',
-      text: unblock ? 'Este vehiculo sera desbloqueado!!!' :'Este vehiculo sera bloqueado!!!',
+      text: unblock ? 'Este anuncio sera desbloqueado!!!' :'Este anuncio sera bloqueado!!!',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',

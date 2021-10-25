@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class GraficalineServiceService {
 
-  url = 'https://backen-api-residuos.herokuapp.com'
+  url = 'http://localhost:5200'
   constructor(private http: HttpClient) { }
 
 

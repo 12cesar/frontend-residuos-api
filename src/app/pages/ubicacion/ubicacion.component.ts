@@ -24,22 +24,21 @@ export class UbicacionComponent implements OnInit {
 
   ngOnInit(): void {
     //this.mostrarUbicaciones();
+    
+    this.mostrarUbicaciones();
     this.escucharSockets();
-    this.crearMapa();
   }
 
- /*  mostrarUbicaciones(){
+   mostrarUbicaciones(){
     this.ubicacionService.getUbicacion().subscribe(
       (data:RespMarcadores)=>{
-        console.log(data);
         this.lugares = data
         this.crearMapa();
       },(error)=>{
         console.log(error);
-        
       }
     )
-  } */
+  }
   escucharSockets(){
     //Marcador-nuevo
     this.wsService.listen('marcador-nuevo').subscribe(
@@ -75,8 +74,8 @@ export class UbicacionComponent implements OnInit {
       container: 'mapa',
       style: 'mapbox://styles/mapbox/streets-v11',
       accessToken: 'pk.eyJ1IjoidGlnZXIxMjE0IiwiYSI6ImNrcDd0cDl2NTAzM2syeG1zdzV4NWEwaGIifQ.xYnNZjDu30SiuGKjzgh_jg',
-      center:[-75.75512993582937 , 45.349977429009954],
-      zoom:15.8
+      center:[-74.580688 , -8.365221],
+      zoom:14
     });
 
     for(const [key,marcador] of Object.entries(this.lugares)){      
@@ -125,7 +124,6 @@ export class UbicacionComponent implements OnInit {
     })
 
     this.markersMapbox[marcador.id] = marker;
-    console.log(this.markersMapbox);
     
 
 
@@ -133,8 +131,8 @@ export class UbicacionComponent implements OnInit {
   crearMarcador(){
     const customMarker:Lugar= {
       id: new Date().toISOString(),
-      lng: -75.75512993582937, 
-      lat: 45.349977429009954,
+      lng: -74.580688 ,  
+      lat: -8.365221,
       nombre: 'sin-nombre',
       color:'#' + Math.floor(Math.random()*16777215).toString(16) 
     }

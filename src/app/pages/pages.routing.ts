@@ -13,6 +13,7 @@ import { ClienteComponent } from './cliente/cliente.component';
 import { AuthGuard } from '../guard/auth.guard';
 import { ConduccionComponent } from './conduccion/conduccion.component';
 import { UbicacionComponent } from './ubicacion/ubicacion.component';
+import { MultasComponent } from './multas/multas.component';
 
 
 const routes: Routes = [
@@ -56,6 +57,10 @@ const routes: Routes = [
           {
             path: 'ubicacion',
             component: UbicacionComponent,
+          },
+          {
+            path: 'multas',
+            component: MultasComponent,
           },
           {
             path: 'progress',

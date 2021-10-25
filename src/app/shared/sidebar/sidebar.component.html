@@ -38,6 +38,13 @@
                     </ul>
                 </li>
                 <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i
+                            class="mdi mdi-gauge"></i><span class="hide-menu">Multas </span></a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li><a [routerLink]="['/dashboard/multas']" routerLinkActive="active"
+                                [routerLinkActiveOptions]="{exact: true}">Mostrar Multas</a></li>
+                    </ul>
+                </li>
+                <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i
                             class="mdi mdi-gauge"></i><span class="hide-menu">Vehiculos </span></a>
                     <ul aria-expanded="false" class="collapse">
                         <li><a [routerLink]="['/dashboard/vehiculos']" routerLinkActive="active"
