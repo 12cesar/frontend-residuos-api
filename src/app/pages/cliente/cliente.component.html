@@ -1,1 +1,42 @@
-<p>cliente works!</p>
+<div class="row justify-content-end">
+    <div class="col-lg-2 text-right">
+        <!-- <select class="form-control btn-sm" id="exampleFormControlSelect1" (change)="ShowSelected($event)">
+            <option value="1">Desbloqueado</option>
+            <option value="2">Bloqueado</option>
+        </select> -->
+    </div>
+    <div class="col-lg-2">
+        <!-- <button type="button" class="btn btn-warning btn-block" data-toggle="modal" data-target="#exampleModal"
+            data-whatever="@mdo"><i class="fa fa-plus-square"></i> Crear</button> -->
+    </div>
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Dni</th>
+                                <th>Tipo</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let clientes of listCliente">
+                                <td>{{clientes.nombre.toLowerCase()}}</td>
+                                <td>{{clientes.dni}}</td>
+                                <td>{{clientes.tipo}}</td>
+                                <td *ngIf="clientes.estado === true" class="text-center"><a class=""><i
+                                            class="fas fa-lock-open text-primary"></i></a></td>
+                                <td *ngIf="clientes.estado === false" class="text-center"><a><i
+                                            class="fas fa-lock"></i></a></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

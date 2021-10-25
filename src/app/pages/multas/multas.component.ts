@@ -4,6 +4,7 @@ import { Multa, ResultMultas, ResultMulta, ResultMultaPost } from '../../interfa
 import { MultasPagesService } from './multas-pages.service';
 import Swal from 'sweetalert2';
 import { ToastSuccess } from '../../function/validarpost';
+import { WebsocketService } from '../../sockets/websocket.service';
 
 @Component({
   selector: 'app-multas',
@@ -20,7 +21,7 @@ export class MultasComponent implements OnInit {
   carga:boolean = true;
   id:string='';
   titulo:string = 'Crear';
-  constructor(private fb:FormBuilder, private multaService:MultasPagesService) { 
+  constructor(private fb:FormBuilder, private multaService:MultasPagesService, private wsService: WebsocketService) { 
     this.multasForm = this.fb.group({
       titulo:['',Validators.required],
       descripcion:['', Validators.required],
@@ -58,6 +59,8 @@ export class MultasComponent implements OnInit {
             resolucion:''
           });
           this.mostrarMulta();
+          const suma =1;
+          this.wsService.emit('escuchar-cantidadmultas', suma);
         },
         (error)=>{
           console.log(error);

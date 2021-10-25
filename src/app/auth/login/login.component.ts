@@ -31,7 +31,8 @@ export class LoginComponent implements OnInit {
       (data:ResultLogin)=>{
         if (data.ok===true && data.user.rol=== 'ADMIN_ROLE') {
           ToastSuccess('success', data.msg)
-          localStorage.setItem('x-token', data.token);          
+          localStorage.setItem('x-token', data.token);  
+          localStorage.setItem('usuario', data.user.nombre);      
           this.router.navigate(['/dashboard'])
         }  
         else{

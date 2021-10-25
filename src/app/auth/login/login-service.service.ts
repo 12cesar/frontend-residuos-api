@@ -27,4 +27,7 @@ export class LoginServiceService {
   getSession(){
     return localStorage.getItem('x-token');
   }
+  getNombre(){
+    return localStorage.getItem('usuario');
+  }
 }

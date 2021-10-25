@@ -32,7 +32,7 @@ export class UbicacionComponent implements OnInit {
    mostrarUbicaciones(){
     this.ubicacionService.getUbicacion().subscribe(
       (data:RespMarcadores)=>{
-        this.lugares = data
+        this.lugares = data;
         this.crearMapa();
       },(error)=>{
         console.log(error);
@@ -44,7 +44,6 @@ export class UbicacionComponent implements OnInit {
     this.wsService.listen('marcador-nuevo').subscribe(
       (marcador: any)=>{
         this.agregarMarcador(marcador);
-        
       },(error)=>{
         console.log(error);
         

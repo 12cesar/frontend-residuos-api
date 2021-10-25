@@ -5,6 +5,7 @@ import { MensajesPagesService } from './mensajes-pages.service';
 import { loadData, closeAlert } from '../../function/cargando';
 import Swal from 'sweetalert2';
 import { ToastSuccess } from '../../function/validarpost';
+import { WebsocketService } from '../../sockets/websocket.service';
 
 @Component({
   selector: 'app-mensajes',
@@ -21,7 +22,7 @@ export class MensajesComponent implements OnInit {
   carga:boolean=true;
   titulo:string = 'Crear';
   id:string='';
-  constructor(private fb: FormBuilder, private mensajeService: MensajesPagesService) {
+  constructor(private fb: FormBuilder, private mensajeService: MensajesPagesService, private wsService:WebsocketService) {
     this.mensajeForm= this.fb.group({
       titulo:['', Validators.required],
       descripcion:['', Validators.required]
@@ -61,6 +62,13 @@ export class MensajesComponent implements OnInit {
             titulo: '',
             descripcion: '',
           });
+          const payload = {
+            titulo: data.mensaje.titulo,
+            descripcion: data.mensaje.descripcion
+          }
+          const suma=1;
+          this.wsService.emit('escuchar-mensaje', payload);
+          this.wsService.emit('escuchar-cantidadmensaje', suma );
           this.mostrarMensajes();
         },
         (error)=>{

@@ -10,6 +10,6 @@ export class UbicacionPagesService {
 
   constructor(private http: HttpClient) { }
   getUbicacion():Observable<any>{
-    return this.http.get('http://localhost:5200'+'/api/ubicacion/mapa');
+    return this.http.get(environment.urlHeroku+'/api/ubicacion/mapa');
   }
 }

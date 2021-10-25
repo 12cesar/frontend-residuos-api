@@ -6,12 +6,10 @@ import { environment } from '../../../environments/environment.prod';
 @Injectable({
   providedIn: 'root'
 })
-export class GraficalineServiceService {
+export class ClientePagesService {
 
-  constructor(private http: HttpClient) { }
-
-
-  getGraficaLineal():Observable<any>{
-    return this.http.get(environment.urlHeroku+'/api/graficas');
+  constructor(private http:HttpClient) { }
+  getClientes():Observable<any>{
+    return this.http.get(environment.urlHeroku+'/api/clientes',{params:{unblock:true}})
   }
 }

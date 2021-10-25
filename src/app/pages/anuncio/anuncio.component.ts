@@ -6,6 +6,7 @@ import { ResultAnuncios, ResultAnuncio } from '../../interfaces/anuncio-interfac
 import { loadData, closeAlert } from '../../function/cargando';
 import Swal from 'sweetalert2';
 import { ToastSuccess } from '../../function/validarpost';
+import { WebsocketService } from '../../sockets/websocket.service';
 
 @Component({
   selector: 'app-anuncio',
@@ -22,7 +23,7 @@ export class AnuncioComponent implements OnInit {
   unblock:boolean=true;
   id:string='';
   titulo:string='Crear';
-  constructor(private fb: FormBuilder, private anuncioService: AnuncioPagesService) { 
+  constructor(private fb: FormBuilder, private anuncioService: AnuncioPagesService, private wsService: WebsocketService) { 
     this.anuncioForm= this.fb.group({
       descripcion:['', Validators.required]
     })
@@ -60,6 +61,8 @@ export class AnuncioComponent implements OnInit {
               descripcion: '',
             });
             this.mostrarAnuncio();
+            const suma = 1;
+            this.wsService.emit('escuchar-cantidadanuncios', suma);
           },
           (error)=>{
             console.log(error);
