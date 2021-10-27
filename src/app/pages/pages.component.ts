@@ -14,7 +14,17 @@ export class PagesComponent implements OnInit {
       if (event instanceof NavigationStart) {
           // Show loading indicator
            const url= event.url;
-           this.page = url.slice(11);
+           if (url === '/dashboard') {
+             this.page = 'Dashboard'
+           }else{
+            
+            const url2 = url.slice(11);
+            const may = url2.charAt(0).toUpperCase();
+            this.page = may.toUpperCase()+url2.slice(1);
+            
+            
+           }
+           
       }
 
       if (event instanceof NavigationEnd) {
