@@ -21,7 +21,6 @@ export class SidebarComponent implements OnInit {
   }
   mostrarUsuario(){
     this.nombre = `${this.authService.getNombre()}`;
-    console.log(this.nombre);
     
   }
 }

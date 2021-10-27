@@ -27,7 +27,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let vehiculos of listVehiculo">
+                            <tr *ngFor="let vehiculos of listVehiculo | paginate: { itemsPerPage: 10, currentPage: pageActual }">
                                 <td>{{vehiculos.nombre.toLowerCase()}}</td>
                                 <td>{{vehiculos.marca}}</td>
                                 <td>{{vehiculos.placa}}</td>
@@ -56,6 +56,9 @@
 
                         </tbody>
                     </table>
+                    <div class="text-center" *ngIf="listVehiculo.length > 10">
+                        <pagination-controls (pageChange)="pageActual = $event" ></pagination-controls>
+                    </div>
                 </div>
             </div>
         </div>

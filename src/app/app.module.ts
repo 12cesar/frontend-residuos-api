@@ -13,7 +13,7 @@ import { AuthModule } from './auth/auth.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthGuard } from './guard/auth.guard';
 import { environment } from '../environments/environment.prod';
-
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -29,7 +29,8 @@ import { environment } from '../environments/environment.prod';
     AuthModule,
     HttpClientModule,
     SocketIoModule.forRoot(environment.wsService),
-    ChartsModule
+    ChartsModule,
+    NgxPaginationModule
   ],
   providers: [
     AuthGuard,

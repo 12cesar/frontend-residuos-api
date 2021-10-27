@@ -24,7 +24,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let usuarios of listUsuario">
+                            <tr *ngFor="let usuarios of listUsuario | paginate: { itemsPerPage: 10, currentPage: pageActual }">
                                 <td>{{usuarios.nombre.toLowerCase()}}</td>
                                 <td>{{usuarios.usuario}}</td>
                                 <td *ngIf="usuarios.rol === 'ADMIN_ROLE'">Administrador</td>
@@ -49,6 +49,9 @@
 
                         </tbody>
                     </table>
+                    <div class="text-center" *ngIf="listUsuario.length > 10">
+                        <pagination-controls (pageChange)="pageActual = $event" ></pagination-controls>
+                    </div>
                 </div>
             </div>
         </div>

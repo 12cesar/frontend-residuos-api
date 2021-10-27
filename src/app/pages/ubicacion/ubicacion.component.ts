@@ -4,6 +4,8 @@ import { Lugar, RespMarcadores } from '../../interfaces/lugar.interface';
 import * as mapboxgl from 'mapbox-gl';
 import { UbicacionPagesService } from './ubicacion-pages.service';
 import { WebsocketService } from '../../sockets/websocket.service';
+import { BreadcrumbsService } from '../../shared/breadcrumbs/breadcrumbs.service';
+import { BreadcrumbsComponent } from '../../shared/breadcrumbs/breadcrumbs.component';
 
 @Component({
   selector: 'app-ubicacion',
@@ -19,7 +21,6 @@ export class UbicacionComponent implements OnInit {
   //lugares: Lugar[] = [];
   lugares:{[key:string]:Lugar}={};
   markersMapbox: {[id:string]: mapboxgl.Marker} ={};
-  
   constructor(private ubicacionService: UbicacionPagesService, private wsService: WebsocketService) { }
 
   ngOnInit(): void {

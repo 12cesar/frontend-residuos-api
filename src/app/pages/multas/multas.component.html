@@ -26,7 +26,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let multas of listMultas">
+                            <tr *ngFor="let multas of listMultas | paginate: { itemsPerPage: 10, currentPage: pageActual }">
                                 <td>{{multas.titulo.toLowerCase()}}</td>
                                 <td>{{multas.descripcion}}</td>
                                 <td>{{multas.resolucion}}</td>
@@ -54,6 +54,9 @@
 
                         </tbody>
                     </table>
+                    <div class="text-center" *ngIf="listMultas.length > 10">
+                        <pagination-controls (pageChange)="pageActual = $event" ></pagination-controls>
+                    </div>
                 </div>
             </div>
         </div>

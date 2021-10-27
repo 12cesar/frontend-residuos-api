@@ -5,6 +5,7 @@ import { MultasPagesService } from './multas-pages.service';
 import Swal from 'sweetalert2';
 import { ToastSuccess } from '../../function/validarpost';
 import { WebsocketService } from '../../sockets/websocket.service';
+import { loadData, closeAlert } from '../../function/cargando';
 
 @Component({
   selector: 'app-multas',
@@ -16,11 +17,12 @@ import { WebsocketService } from '../../sockets/websocket.service';
 export class MultasComponent implements OnInit {
 
   multasForm:FormGroup;
-  listMultas?: Multa[];
+  listMultas: Multa[] =[];
   unblock:boolean=true;
   carga:boolean = true;
   id:string='';
   titulo:string = 'Crear';
+  pageActual: number = 1;
   constructor(private fb:FormBuilder, private multaService:MultasPagesService, private wsService: WebsocketService) { 
     this.multasForm = this.fb.group({
       titulo:['',Validators.required],
@@ -33,10 +35,16 @@ export class MultasComponent implements OnInit {
     this.mostrarMulta();
   }
   mostrarMulta(){
+    if (this.carga) {
+      loadData('Cargando', 'Espere porfavor!!!');
+    }
     this.multaService.getMultas(this.unblock).subscribe(
       (data:ResultMultas)=>{
         this.listMultas =data.multa;
-        
+        if (this.carga) {
+          closeAlert();
+        }
+        this.carga=false
       },
       (error)=>{
         console.log(error);

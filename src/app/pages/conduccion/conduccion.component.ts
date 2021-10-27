@@ -18,13 +18,14 @@ import { ToastSuccess } from '../../function/validarpost';
 })
 export class ConduccionComponent implements OnInit {
 
-  listConduccion?:Conduccion[];
+  listConduccion:Conduccion[] =[];
   listChofer?:Usuario[];
   listVehiculo?: Vehiculo[];
   conduccionForm:FormGroup;
   carga:boolean =true;
   titulo: string ='Crear';
   id:string='';
+  pageActual: number = 1;
   constructor(private fb: FormBuilder, private conduccionService:ConduccionPagesService) { 
     this.conduccionForm = this.fb.group({
       chofer:['', Validators.required],
@@ -46,7 +47,6 @@ export class ConduccionComponent implements OnInit {
         
         
         this.listConduccion = data.conduccion;
-        console.log(this.listConduccion);
         
         if (this.carga) {
           closeAlert();
@@ -62,7 +62,6 @@ export class ConduccionComponent implements OnInit {
     this.conduccionService.getChofer().subscribe(
       (data:ResultUser)=>{
         this.listChofer = data.usuario;
-        console.log(this.listChofer);
         
       }
     )
@@ -71,7 +70,6 @@ export class ConduccionComponent implements OnInit {
     this.conduccionService.getVehiculo().subscribe(
       (data:ResultVehiculos)=>{
         this.listVehiculo = data.vehiculo;
-        console.log(this.listVehiculo);
         
       }
     )

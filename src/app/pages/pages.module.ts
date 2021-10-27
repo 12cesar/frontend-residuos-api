@@ -20,6 +20,7 @@ import { GraficalineComponent } from './graficaline/graficaline.component';
 import { CuadrodatosComponent } from './cuadrodatos/cuadrodatos.component';
 import { ConduccionComponent } from './conduccion/conduccion.component';
 import { UbicacionComponent } from './ubicacion/ubicacion.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -54,7 +55,8 @@ import { UbicacionComponent } from './ubicacion/ubicacion.component';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    ChartsModule
+    ChartsModule,
+    NgxPaginationModule
   ]
 })
 export class PagesModule { }

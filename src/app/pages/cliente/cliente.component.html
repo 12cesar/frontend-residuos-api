@@ -1,18 +1,23 @@
 <div class="row justify-content-end">
-    <div class="col-lg-2 text-right">
-        <!-- <select class="form-control btn-sm" id="exampleFormControlSelect1" (change)="ShowSelected($event)">
-            <option value="1">Desbloqueado</option>
-            <option value="2">Bloqueado</option>
-        </select> -->
+    <div class="col-lg-9 text-right">
+        <!-- ============================================================== -->
+        <!-- Search -->
+        <!-- ============================================================== -->
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="buscar..." (keyup)="onKeypressEvent($event)">
+            <span class="input-group-btn">
+                <button class="btn btn-info" type="button"><i class="mdi mdi-account-search"></i></button>
+            </span>
+        </div>
     </div>
     <div class="col-lg-2">
-        <!-- <button type="button" class="btn btn-warning btn-block" data-toggle="modal" data-target="#exampleModal"
-            data-whatever="@mdo"><i class="fa fa-plus-square"></i> Crear</button> -->
+        <button type="button" class="btn btn-warning btn-block" (click)="crearReporte()"><i class="fa fa-file-pdf"></i>
+            Crear Reporte</button>
     </div>
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <div class="table-responsive">
+                <div class="table-responsive" id="htmlData">
                     <table class="table table-bordered">
                         <thead>
                             <tr>
@@ -23,7 +28,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let clientes of listCliente">
+                            <tr
+                                *ngFor="let clientes of listCliente | paginate: { itemsPerPage: 10, currentPage: pageActual }">
                                 <td>{{clientes.nombre.toLowerCase()}}</td>
                                 <td>{{clientes.dni}}</td>
                                 <td>{{clientes.tipo}}</td>
@@ -35,6 +41,9 @@
 
                         </tbody>
                     </table>
+                    <div class="text-center" *ngIf="listCliente.length > 10">
+                        <pagination-controls (pageChange)="pageActual = $event"></pagination-controls>
+                    </div>
                 </div>
             </div>
         </div>

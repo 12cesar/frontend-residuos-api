@@ -9,7 +9,7 @@ import { environment } from '../../../environments/environment.prod';
 export class ClientePagesService {
 
   constructor(private http:HttpClient) { }
-  getClientes():Observable<any>{
-    return this.http.get(environment.urlHeroku+'/api/clientes',{params:{unblock:true}})
+  getClientes(buscar:string):Observable<any>{
+    return this.http.get(environment.urlHeroku+'/api/clientes',{params:{buscar}})
   }
 }

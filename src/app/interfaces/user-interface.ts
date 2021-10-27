@@ -18,5 +18,5 @@ export interface Usuario {
     usuario:  string;
     rol:      string;
     estado:   boolean;
-    password: string;
+    password?: string;
 }

@@ -44,7 +44,6 @@ export class GraficalineComponent implements OnInit {
     )
   }
   escucharSocket(){
-    console.log('hola');
     this.wsService.listen('cambio-grafica').subscribe(
       (data:any)=>{
         console.log(data);

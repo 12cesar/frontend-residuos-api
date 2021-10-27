@@ -17,13 +17,14 @@ import { loadData, closeAlert } from '../../function/cargando';
   ]
 })
 export class UsuariosComponent implements OnInit {
-  listUsuario?: Usuario[];
+  listUsuario: Usuario[] =[];
   listRoles?: Role[];
   titulo: string = 'Crear';
   id: string = '';
   usuarioForm: FormGroup;
   unblock:boolean =true;
   cargar?:boolean =true;
+  pageActual: number = 1;
   constructor(private usuarioService: UsuarioAdminService, private fb: FormBuilder) {
     this.usuarioForm = this.fb.group({
       nombre: ['', Validators.required],

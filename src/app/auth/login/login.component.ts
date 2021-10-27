@@ -4,6 +4,7 @@ import { LoginServiceService } from './login-service.service';
 import { ResultLogin } from '../../interfaces/login-interface';
 import { ToastSuccess } from '../../function/validarpost';
 import { Router } from '@angular/router';
+import { loadData, closeAlert } from '../../function/cargando';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,8 @@ import { Router } from '@angular/router';
   ]
 })
 export class LoginComponent implements OnInit {
-  loginForm: FormGroup
+  loginForm: FormGroup;
+  cargar:boolean=true;
   constructor(private fb: FormBuilder, private loginService:LoginServiceService, private router: Router) {
     this.loginForm = this.fb.group({
       usuario:['', Validators.required],
@@ -24,12 +26,19 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
   crearToken(){
+    if (this.cargar) {
+      loadData('Validando datos','Porfavor espere');
+    }
     const data = new FormData();
     data.append('usuario', this.loginForm.get('usuario')?.value);
     data.append('password', this.loginForm.get('password')?.value);
     this.loginService.crearToken(data).subscribe(
       (data:ResultLogin)=>{
         if (data.ok===true && data.user.rol=== 'ADMIN_ROLE') {
+          if (this.cargar) {
+            closeAlert();
+          }
+          this.cargar=false;
           ToastSuccess('success', data.msg)
           localStorage.setItem('x-token', data.token);  
           localStorage.setItem('usuario', data.user.nombre);      

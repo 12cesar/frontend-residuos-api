@@ -16,12 +16,13 @@ import { WebsocketService } from '../../sockets/websocket.service';
 })
 export class MensajesComponent implements OnInit {
 
-  listMensajes?: Mensaje[];
+  listMensajes: Mensaje[] =[];
   mensajeForm:FormGroup;
   unblock:boolean =true;
   carga:boolean=true;
   titulo:string = 'Crear';
   id:string='';
+  pageActual: number = 1;
   constructor(private fb: FormBuilder, private mensajeService: MensajesPagesService, private wsService:WebsocketService) {
     this.mensajeForm= this.fb.group({
       titulo:['', Validators.required],

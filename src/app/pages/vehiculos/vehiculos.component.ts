@@ -16,11 +16,12 @@ import Swal from 'sweetalert2';
 })
 export class VehiculosComponent implements OnInit {
   vehiculosForm: FormGroup;
-  listVehiculo?: Vehiculo[];
+  listVehiculo: Vehiculo[] = [];
   unblock:boolean =true;
   cargar?:boolean =true;
   titulo:string = 'Crear';
   id:string='';
+  pageActual: number = 1;
   constructor(private fb: FormBuilder, private vehiculoService: VehiculosServiceService) { 
     this.vehiculosForm = this.fb.group({
       nombre:['',Validators.required],

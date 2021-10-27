@@ -17,12 +17,13 @@ import { WebsocketService } from '../../sockets/websocket.service';
 })
 export class AnuncioComponent implements OnInit {
 
-  listAnuncio?: Anuncio[];
+  listAnuncio: Anuncio[] =[];
   anuncioForm: FormGroup;
   carga:boolean =true;
   unblock:boolean=true;
   id:string='';
   titulo:string='Crear';
+  pageActual: number = 1;
   constructor(private fb: FormBuilder, private anuncioService: AnuncioPagesService, private wsService: WebsocketService) { 
     this.anuncioForm= this.fb.group({
       descripcion:['', Validators.required]

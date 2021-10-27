@@ -9,7 +9,9 @@ import Swal from 'sweetalert2';
 })
 export class AppComponent implements OnInit{
   title = 'adminpro';
-  constructor(private wsService: WebsocketService){}
+  constructor(private wsService: WebsocketService){
+    
+  }
  
   ngOnInit(): void {
     this.escucharSocket();

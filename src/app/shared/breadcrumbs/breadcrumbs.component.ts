@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute  } from '@angular/router';
+import { BreadcrumbsService } from './breadcrumbs.service';
 
 @Component({
   selector: 'app-breadcrumbs',
@@ -8,9 +10,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BreadcrumbsComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit(): void {
+  public page:string = '';
+  constructor(private bread:BreadcrumbsService, private activatedRoute : ActivatedRoute) { 
+    this.activatedRoute.url.subscribe(url =>{
+      this.page = url[0].path;
+  });
+ 
   }
 
+  ngOnInit(): void {
+    //this.page= this.bread.mostrarPage();
+    //console.log('siiiii');
+    
+  }
+  
 }

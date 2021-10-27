@@ -25,7 +25,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let mensajes of listMensajes">
+                            <tr *ngFor="let mensajes of listMensajes | paginate: { itemsPerPage: 10, currentPage: pageActual }">
                                 <td>{{mensajes.titulo.toLowerCase()}}</td>
                                 <td>{{mensajes.descripcion}}</td>
                                 <td>{{mensajes.fecha}}</td>
@@ -49,9 +49,12 @@
                                     </a>
                                 </td>
                             </tr>
-
                         </tbody>
                     </table>
+                    <div class="text-center" *ngIf="listMensajes.length > 10">
+                        <pagination-controls (pageChange)="pageActual = $event" ></pagination-controls>
+                    </div>
+                    
                 </div>
             </div>
         </div>

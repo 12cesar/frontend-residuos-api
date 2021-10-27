@@ -24,7 +24,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let anuncio of listAnuncio">
+                            <tr *ngFor="let anuncio of listAnuncio | paginate: { itemsPerPage: 10, currentPage: pageActual }">
                                 <td>{{anuncio.descripcion.toLowerCase()}}</td>
                                 <td>{{anuncio.fecha}}</td>
                                 <td>{{anuncio.usuario.nombre.toLowerCase()}}</td>
@@ -50,6 +50,9 @@
 
                         </tbody>
                     </table>
+                    <div class="text-center" *ngIf="listAnuncio.length > 10">
+                        <pagination-controls (pageChange)="pageActual = $event" ></pagination-controls>
+                    </div>
                 </div>
             </div>
         </div>
