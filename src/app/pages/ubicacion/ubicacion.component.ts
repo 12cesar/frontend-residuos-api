@@ -4,8 +4,6 @@ import { Lugar, RespMarcadores } from '../../interfaces/lugar.interface';
 import * as mapboxgl from 'mapbox-gl';
 import { UbicacionPagesService } from './ubicacion-pages.service';
 import { WebsocketService } from '../../sockets/websocket.service';
-import { BreadcrumbsService } from '../../shared/breadcrumbs/breadcrumbs.service';
-import { BreadcrumbsComponent } from '../../shared/breadcrumbs/breadcrumbs.component';
 
 @Component({
   selector: 'app-ubicacion',
@@ -75,7 +73,7 @@ export class UbicacionComponent implements OnInit {
       style: 'mapbox://styles/mapbox/streets-v11',
       accessToken: 'pk.eyJ1IjoidGlnZXIxMjE0IiwiYSI6ImNrcDd0cDl2NTAzM2syeG1zdzV4NWEwaGIifQ.xYnNZjDu30SiuGKjzgh_jg',
       center:[-74.580688 , -8.365221],
-      zoom:14
+      zoom:12
     });
 
     for(const [key,marcador] of Object.entries(this.lugares)){      
@@ -85,19 +83,21 @@ export class UbicacionComponent implements OnInit {
 
   }
   agregarMarcador(marcador:Lugar){
-    
+    const h1 = document.createElement('h2');
+    h1.innerText = marcador.nombre.toLowerCase();
     const h2 = document.createElement('h2');
-    h2.innerText = marcador.nombre;
-    const btnBorrar = document.createElement('button');
-    btnBorrar.innerText = 'Desconectar';
+    h2.innerText = marcador.vehiculo.toLowerCase();
+    //const btnBorrar = document.createElement('button');
+    //btnBorrar.innerText = 'Desconectar';
     const div = document.createElement('div');
-    div.append(h2, btnBorrar);
+    div.setAttribute('style','width:100px, height:100px')
+    div.append(h1, h2);
     const customPopup = new mapboxgl.Popup({
       offset:25,
       closeOnClick:false
     }).setDOMContent(div);
     const marker = new mapboxgl.Marker({
-      draggable:true,
+      draggable:false,
       color:marcador.color,
     })
     .setLngLat([marcador.lng, marcador.lat])
@@ -106,6 +106,7 @@ export class UbicacionComponent implements OnInit {
 
     marker.on('drag', ()=>{
       const lngLat = marker.getLngLat();
+      
       //TODO: Crear evento para emitir las coordenadas de este marcador
       const nuevoMarcador ={
         id:marcador.id,
@@ -115,13 +116,13 @@ export class UbicacionComponent implements OnInit {
       
     });
 
-    btnBorrar.addEventListener('click', ()=>{
+    /* btnBorrar.addEventListener('click', ()=>{
       marker.remove();
 
       //TODO: Eliminar el marcador mediante sockets
       this.wsService.emit('marcador-borrar', marcador.id);
 
-    })
+    }) */
 
     this.markersMapbox[marcador.id] = marker;
     
@@ -133,7 +134,8 @@ export class UbicacionComponent implements OnInit {
       id: new Date().toISOString(),
       lng: -74.580688 ,  
       lat: -8.365221,
-      nombre: 'sin-nombre',
+      nombre: 'julio cesar calderon galindo',
+      vehiculo: 'vehiculo 3',
       color:'#' + Math.floor(Math.random()*16777215).toString(16) 
     }
     this.agregarMarcador(customMarker);
